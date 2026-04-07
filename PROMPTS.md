@@ -31,16 +31,31 @@ Explicá qué cambios hiciste y por qué (o por qué no cambiaste nada).
 
 ### 1 - variables.py
 
-**Herramienta**: 
+**Herramienta**:Gemini 
 
 **Prompt usado**:
+Quiero que completes cada una de las funciones sin implementar, presta atención a los comentarios dentro de las funciones y sigue sus instrucciones al pie de la letra, luego elimina los comentarios (ya sean comentarios con comillas o con numerales, deja el codigo limpio)
 > 
 
 **Resultado obtenido**:
+```py
+def crear_saludo(nombre: str) -> str:
+    return f"Hola, {nombre}!"
 
+def suma_enteros(a: int, b: int) -> int:
+    return a + b
 
-**¿Lo usaste tal cual o lo modificaste?**
+def es_mayor_de_edad(edad: int) -> bool:
+    return edad >= 18
 
+def tipo_de_dato(valor) -> str:
+    return type(valor).__name__
+
+def convertir_a_float(valor: str) -> float:
+    return float(valor)
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: No hice cambios
 
 ---
 
