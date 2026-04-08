@@ -453,5 +453,8 @@ def caesar_cipher(texto: str, desplazamiento: int) -> str:
 Respondé brevemente (3-5 oraciones):
 
 - ¿Qué aprendiste sobre cómo formular buenos prompts?
+- **Respuesta**: Aprendi a poner en instrucciones mas exactas las ideas que quiero transmitirle a la IA. 
 - ¿En qué casos la IA fue útil y en cuáles no?
+- **Respuesta**: Fue util en generar codigo legible y comentado, pero fallaba cuando le dejaba espacio para que interprete.
 - ¿Qué harías diferente la próxima vez?
+- **Respuesta**: Buscaria ser lo mas exacto posible con mis solicitudes, el metodo que mas me ayudo a lograr ese objetivo fue pedirle a la IA que tome el rol de entrevistador.
