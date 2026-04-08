@@ -116,17 +116,26 @@ def convertir_a_float(valor: str) -> float:
 
 ### 3 - listas.py
 
-**Herramienta**: 
+**Herramienta**: Gemini
 
 **Prompt usado**:
-> 
+> Tengo que escribir una funciones en Python: que Dada una lista de listas, retorna todos los elementos en una sola lista. Ejemplo: aplanar_lista([[1,2],[3,4]]) -> [1, 2, 3, 4]. Mi lógica es utilizar el metodo chain() de python. [Requerimientos: anidamiento multinivel, elementos solos permitidos, sin librerías externas].
 
 **Resultado obtenido**:
-
-
+```python
+def aplanar_lista(lista: list) -> list:
+    resultado = []
+    for elemento in lista:
+        if isinstance(elemento, list):
+            resultado.extend(aplanar_lista(elemento))
+        else:
+            resultado.append(elemento)
+    return resultado
+```
 **¿Lo usaste tal cual o lo modificaste?**
+Se usó tal cual. Se validó la inicialización del producto en 1 para evitar que el resultado fuera siempre 0.
 
-
+PD: Habia mas prompts pero le pedi a la IA que olvide una solicitud que le hice y BORRO TODA LA CONVERSACION antes de esa solicitud.
 ---
 
 ### 4 - diccionarios.py
