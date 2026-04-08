@@ -4,42 +4,47 @@
 
 
 def suma_lista(numeros: list) -> int | float:
-    """
-    Retorna la suma de todos los elementos de la lista.
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    if not isinstance(numeros, list):
+        raise TypeError("El argumento debe ser una lista.")
+    
+    if not numeros:
+        return 0.0
+    
+    try:
+        resultado = sum(numeros)
+        return resultado
+    except TypeError:
+        raise TypeError("La lista debe contener únicamente números (int o float).")
 
 
 def filtrar_pares(numeros: list) -> list:
-    """
-    Retorna una nueva lista con solo los números pares.
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    if not isinstance(numeros, list):
+        raise TypeError("El argumento debe ser una lista.")
+    
+    try:
+        return [n for n in numeros if n % 2 == 0]
+    except TypeError:
+        raise TypeError("La lista debe contener únicamente números para calcular la paridad.")
 
 
 def invertir_lista(lista: list) -> list:
-    """
-    Retorna la lista invertida SIN modificar la original.
-    """
-    # TU CÓDIGO AQUÍ
-    pass
-
+    lista_auxiliar = lista.copy()
+    
+    lista_auxiliar.reverse()
+    
+    return lista_auxiliar
 
 def eliminar_duplicados(lista: list) -> list:
-    """
-    Retorna una nueva lista sin elementos duplicados,
-    manteniendo el orden de primera aparición.
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    return list(dict.fromkeys(lista))
 
 
 def aplanar_lista(lista: list) -> list:
-    """
-    Dada una lista de listas, retorna todos los elementos en una sola lista.
-    Ejemplo: aplanar_lista([[1,2],[3,4]]) -> [1, 2, 3, 4]
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    resultado = []
+    for elemento in lista:
+        # Verificamos si el elemento es una lista para volver a aplanar
+        if isinstance(elemento, list):
+            resultado.extend(aplanar_lista(elemento))
+        else:
+            # Si es un elemento solo, lo agregamos directamente
+            resultado.append(elemento)
+    return resultado

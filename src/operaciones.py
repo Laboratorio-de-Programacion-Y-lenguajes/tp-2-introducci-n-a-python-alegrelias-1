@@ -4,37 +4,30 @@
 
 
 def es_palindromo(texto: str) -> bool:
-    """
-    Retorna True si el texto es palíndromo (ignorando espacios y mayúsculas).
-    Ejemplo: es_palindromo("Anita lava la tina") -> True
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    texto_limpio = "".join(caracter.lower() for caracter in texto if caracter.isalnum())
+    return texto_limpio == texto_limpio[::-1]
 
 
 def capitalizar_palabras(texto: str) -> str:
-    """
-    Capitaliza la primera letra de cada palabra.
-    Ejemplo: capitalizar_palabras("hola mundo") -> "Hola Mundo"
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    return " ".join(palabra.capitalize() for palabra in texto.split())
 
 
 def contar_vocales(texto: str) -> int:
-    """
-    Retorna la cantidad de vocales (a,e,i,o,u) en el texto,
-    sin distinguir mayúsculas/minúsculas.
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    vocales = "aeiou"
+    return sum(1 for caracter in texto.lower() if caracter in vocales)
 
 
 def caesar_cipher(texto: str, desplazamiento: int) -> str:
-    """
-    Aplica el cifrado César al texto con el desplazamiento dado.
-    Solo desplaza letras (a-z, A-Z), los demás caracteres no cambian.
-    Ejemplo: caesar_cipher("abc", 1) -> "bcd"
-    """
-    # TU CÓDIGO AQUÍ
-    pass
+    resultado = []
+    for caracter in texto:
+        if 'a' <= caracter <= 'z':
+            base = ord('a')
+            nuevo = chr(base + (ord(caracter) - base + desplazamiento) % 26)
+            resultado.append(nuevo)
+        elif 'A' <= caracter <= 'Z':
+            base = ord('A')
+            nuevo = chr(base + (ord(caracter) - base + desplazamiento) % 26)
+            resultado.append(nuevo)
+        else:
+            resultado.append(caracter)
+    return "".join(resultado)
