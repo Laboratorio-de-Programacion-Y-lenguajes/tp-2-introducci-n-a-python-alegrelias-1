@@ -372,16 +372,79 @@ def reducir(lista: list, func, inicial):
 
 ### 7 - operaciones.py
 
-**Herramienta**: 
+### Ejercicio 1
+
+**Herramienta**: Gemini
 
 **Prompt usado**:
-> 
+> Quiero hacer una función es_palindromo(texto: str) -> bool. Realizá una lista con las mejores alternativas comparando los pros y contras de cada enfoque con respecto a eficiencia, velocidad y legibilidad. Luego, implementá la versión elegida limpiando comentarios y docstrings.
 
 **Resultado obtenido**:
+```py
+def es_palindromo(texto: str) -> bool:
+    texto_limpio = "".join(caracter.lower() for caracter in texto if caracter.isalnum())
+    return texto_limpio == texto_limpio[::-1]
+```
 
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se compararon enfoques de slicing, iterativos (dos punteros) y funcionales. Se optó por el slicing por su balance entre legibilidad y la optimización nativa de Python para el manejo de cadenas, sumando una normalización con isalnum().
 
-**¿Lo usaste tal cual o lo modificaste?**
+### Ejercicio 2
 
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función capitalizar_palabras(texto: str) -> str. Debe capitalizar la primera letra de cada palabra. Realizá una lista con las mejores alternativas comparando los pros y contras con respecto a eficiencia, velocidad y legibilidad. Luego, implementá la versión elegida limpiando comentarios y docstrings.
+
+**Resultado obtenido**:
+```py
+def capitalizar_palabras(texto: str) -> str:
+    return " ".join(palabra.capitalize() for palabra in texto.split())
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se descartó el método .title() debido a comportamientos inesperados con apóstrofes. El uso de .split() con .capitalize() resultó ser el enfoque más robusto para un entorno de producción, garantizando que solo la primera letra de cada término sea afectada.
+
+### Ejercicio 3
+
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función contar_vocales(texto: str) -> int. Debe retornar la cantidad de vocales (a,e,i,o,u) en el texto, sin distinguir mayúsculas/minúsculas. Realizá una lista con las mejores alternativas comparando pros y contras. Luego, implementá la versión elegida.
+
+**Resultado obtenido**:
+```py
+def contar_vocales(texto: str) -> int:
+    vocales = "aeiou"
+    return sum(1 for caracter in texto.lower() if caracter in vocales)
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se seleccionó el enfoque de expresión generadora con sum() debido a su eficiencia de memoria ($O(1)$ de espacio extra) y su estilo "Pythonic", superando en legibilidad a las expresiones regulares para una tarea de conteo simple.
+
+### Ejercicio 4
+
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función caesar_cipher(texto: str, desplazamiento: int) -> str. Debe aplicar el cifrado César al texto (a-z, A-Z). Realizá una lista con las mejores alternativas comparando pros y contras. Luego, implementá la versión elegida limpiando comentarios.
+
+**Resultado obtenido**:
+```py
+def caesar_cipher(texto: str, desplazamiento: int) -> str:
+    resultado = []
+    for caracter in texto:
+        if 'a' <= caracter <= 'z':
+            base = ord('a')
+            nuevo = chr(base + (ord(caracter) - base + desplazamiento) % 26)
+            resultado.append(nuevo)
+        elif 'A' <= caracter <= 'Z':
+            base = ord('A')
+            nuevo = chr(base + (ord(caracter) - base + desplazamiento) % 26)
+            resultado.append(nuevo)
+        else:
+            resultado.append(caracter)
+    return "".join(resultado)
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se analizó el uso de tablas de traducción (maketrans) frente a aritmética modular. Se eligió la aritmética modular por su precisión pedagógica y flexibilidad para manejar desplazamientos variables sin pre-procesamiento de alfabetos.
 
 ---
 
