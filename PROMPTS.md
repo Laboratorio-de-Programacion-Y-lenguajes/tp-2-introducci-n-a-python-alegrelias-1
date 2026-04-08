@@ -170,16 +170,116 @@ def filtrar_por_valor(d: dict, minimo: int) -> dict:
 
 ### 5 - loops.py
 
-**Herramienta**: 
+### Ejercicio 1
+**Herramienta**: Gemini
 
 **Prompt usado**:
-> 
+> Quiero hacer una función contar_hasta(n: int) -> list que retorne una lista con los números del 1 al n (inclusive). Pero antes de escribir el código, haceme preguntas clave para que la función sea lo más robusta posible para un entorno de producción. [Respuestas: 1. Lista vacía para n <= 0, 2. Conversión de tipos con manejo de excepciones, 3. Límite de 10,000 valores, 4. Rango inclusivo].
 
 **Resultado obtenido**:
+```py
+def contar_hasta(n: int) -> list:
+    try:
+        limite = int(n)
+        if limite <= 0: return []
+        if limite > 10000: limite = 10000
+        return list(range(1, limite + 1))
+    except (ValueError, TypeError):
+        return []
+```
 
 
-**¿Lo usaste tal cual o lo modificaste?**
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. El refinamiento permitió establecer un "techo" de seguridad (10k) para evitar desbordamientos de memoria en el servidor de autograding.
 
+### Ejercicio 2
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función tabla_multiplicar(n: int) -> list que retorne una lista con los primeros 10 múltiplos de n. Pero antes de escribir el código, haceme preguntas clave para que la función sea lo más robusta posible. [Respuestas: 1. Error detallado para n=0, 2. Permitir progresión negativa, 3. Redondear floats, 4. Cantidad como parámetro opcional].
+
+**Resultado obtenido**:
+```py
+def tabla_multiplicar(n: float, cantidad: int = 10) -> list:
+    try:
+        base = int(round(float(n)))
+        if base == 0: return ["Error: La base no puede ser cero."]
+        return [base * i for i in range(1, cantidad + 1)]
+    except (ValueError, TypeError):
+        return ["Error: Entrada no válida."]
+```
+
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. La decisión de usar round() en lugar de truncar con int() mejora la precisión esperada por un usuario final al ingresar decimales.
+
+### Ejercicio 3
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función suma_digitos(n: int) -> int que retorne la suma de los dígitos de un número entero positivo. Pero antes de escribir el código, haceme preguntas clave. [Respuestas: 1. Usar valor absoluto, 2. Enfoque matemático (módulo/división), 3. Manejo de excepciones, 4. Límite de 10 dígitos].
+
+**Resultado obtenido**:
+```py
+def suma_digitos(n: int) -> int | str:
+    try:
+        num = abs(int(n))
+        if num >= 10**10: return "Error: Supera el límite de 10 dígitos."
+        suma = 0
+        while num > 0:
+            suma += num % 10
+            num //= 10
+        return suma
+    except (ValueError, TypeError):
+        return "Error: Entrada no válida."
+```
+
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se priorizó el enfoque matemático sobre el uso de strings para demostrar un manejo eficiente de recursos de CPU ($O(\text{dígitos})$).
+
+### Ejercicio 4
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función es_primo(n: int) -> bool que retorne True si n es un número primo. Antes, haceme preguntas clave. [Respuestas: 1. False para n < 2, 2. Máxima eficiencia (raíz cuadrada), 3. Intentar conversión de tipos, 4. Límite de 10M].
+
+**Resultado obtenido**:
+```py
+def es_primo(n: int) -> bool:
+    try:
+        num = int(n)
+        if num < 2: return False
+        if num == 2: return True
+        if num % 2 == 0: return False
+        for i in range(3, int(num**0.5) + 1, 2):
+            if num % i == 0: return False
+        return True
+    except (ValueError, TypeError):
+        return False
+```
+
+### Ejercicio 5
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Quiero hacer una función fibonacci(n: int) -> list que retorne los primeros n números de la serie. Antes, haceme preguntas clave. [Respuestas: 1. Excepción detallada, 2. Enfoque iterativo, 3. Límite de 500, 4. Intento de conversión].
+
+**Resultado obtenido**:
+```py
+def fibonacci(n: int) -> list | str:
+    try:
+        limite = int(n)
+        if limite <= 0: return []
+        if limite > 500: return "Error: Límite máximo 500."
+        resultado, a, b = [], 0, 1
+        for _ in range(limite):
+            resultado.append(a)
+            a, b = b, a + b
+        return resultado
+    except (ValueError, TypeError):
+        return "Error: Entrada no válida."
+```
+
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. El enfoque iterativo garantiza que no se alcance el límite de recursión de Python al procesar hasta 500 términos.
 
 ---
 
