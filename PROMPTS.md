@@ -140,15 +140,30 @@ PD: Habia mas prompts pero le pedi a la IA que olvide una solicitud que le hice 
 
 ### 4 - diccionarios.py
 
-**Herramienta**: 
+**Herramienta**: Gemini
 
 **Prompt usado**:
-> 
+> Aplicá la Estrategia de Generación Infinita: Generá 10 ejemplos de diccionarios en Python que representen palabras con valores diversos. Luego, completá las funciones contar_palabras, invertir_diccionario, merge_diccionarios y filtrar_por_valor siguiendo las instrucciones detalladas, eliminando comentarios y docstrings para dejar el código limpio.
 
 **Resultado obtenido**:
+```py
+def contar_palabras(texto: str) -> dict:
+    frecuencias = {}
+    for palabra in texto.lower().split():
+        frecuencias[palabra] = frecuencias.get(palabra, 0) + 1
+    return frecuencias
 
+def invertir_diccionario(d: dict) -> dict:
+    return {valor: clave for clave, valor in d.items()}
 
-**¿Lo usaste tal cual o lo modificaste?**
+def merge_diccionarios(d1: dict, d2: dict) -> dict:
+    return d1 | d2
+
+def filtrar_por_valor(d: dict, minimo: int) -> dict:
+    return {k: v for k, v in d.items() if v >= minimo}
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. La estrategia de generación previa permitió entender la versatilidad de los valores en los diccionarios. Se optó por el operador | para el merge y comprensiones de diccionario para el filtrado e inversión, priorizando la sintaxis moderna de Python 3.13 y la eficiencia $O(n)$.
 
 
 ---
