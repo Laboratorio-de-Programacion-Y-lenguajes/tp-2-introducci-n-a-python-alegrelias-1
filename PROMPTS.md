@@ -169,17 +169,89 @@ PD: Habia mas prompts pero le pedi a la IA que olvide una solicitud que le hice 
 ---
 
 ### 6 - funciones.py
-
-**Herramienta**: 
+### Ejercicio 1
+**Herramienta**: Gemini
 
 **Prompt usado**:
-> 
+> Necesito una función contar_palabra(texto: str, palabra: str) -> int en Python 3.13. Cada vez que generes una respuesta, explicame el razonamiento y asunciones detrás de la selección de frameworks. De ser posible utilizá ejemplos o evidencia asociados a muestras de código para apoyar tu respuesta sobre por qué el framework es la mejor opción para determinada tarea.
 
 **Resultado obtenido**:
+```py
+def contar_palabra(texto: str, palabra: str) -> int:
+    texto_limpio = texto.lower()
+    palabra_buscada = palabra.lower()
+    listado_palabras = texto_limpio.split()
+    return listado_palabras.count(palabra_buscada)
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. El razonamiento para elegir la librería estándar fue evitar dependencias pesadas como NLTK. Se optó por .split() en lugar de .count() sobre el string para evitar falsos positivos con subcadenas (ej. "sol" en "soldado").
+
+### Ejercicio 2
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Necesito una función aplicar_funcion(lista: list, func) -> list en Python 3.13. Aplica func a cada elemento de la lista y retorna la nueva lista. Verifica que pase el siguiente test: assert aplicar_funcion([1, 2, 3], lambda x: x * 2) == [2, 4, 6]. Explicame el razonamiento y asunciones detrás de la selección de frameworks.
+
+**Resultado obtenido**:
+```py
+def aplicar_funcion(lista: list, func) -> list:
+    return [func(elemento) for elemento in lista]
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se seleccionó la List Comprehension de Python nativo por sobre map() o librerías como NumPy. La asunción es que para el volumen de datos del TP, la sintaxis nativa es más legible y eficiente al no requerir la carga de módulos externos.
+
+### Ejercicio 3
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Necesito una función componer(f, g) en Python 3.13. Retorna una nueva función que aplica g y luego f. Ejemplo: componer(f, g)(x) == f(g(x)). Explicame el razonamiento y asunciones detrás de la selección de frameworks.
+
+**Resultado obtenido**:
+```py
+def componer(f, g):
+    def funcion_compuesta(x):
+        return f(g(x))
+    return funcion_compuesta
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual. Se utilizó el concepto de Closures nativos de Python. Se asumió que no es necesario usar frameworks de programación funcional como toolz ya que Python trata a las funciones como objetos de primera clase, permitiendo capturar el estado de f y g de forma eficiente.
+
+### Ejercicio 4
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Necesito una función memoizar(func) en Python 3.13. Retorna una versión de func que cachea sus resultados. Si se llama con los mismos argumentos, retorna el resultado cacheado. Explicame el razonamiento y asunciones detrás de la selección de frameworks.
+
+**Resultado obtenido**:
+```py
+def memoizar(func):
+    cache = {}
+    def wrapper(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]
+    return wrapper
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual.
 
 
-**¿Lo usaste tal cual o lo modificaste?**
+### Ejercicio 5
+**Herramienta**: Gemini
 
+**Prompt usado**:
+> Necesito una función reducir(lista: list, func, inicial) en Python 3.13. Aplica func acumulativamente a los elementos de lista, comenzando con inicial. Ejemplo: reducir([1,2,3], lambda a,b: a+b, 0) -> 6. NO uses functools.reduce. Explicame el razonamiento y asunciones detrás de la selección de frameworks.
+
+**Resultado obtenido**:
+```py
+def reducir(lista: list, func, inicial):
+    acumulador = inicial
+    for elemento in lista:
+        acumulador = func(acumulador, elemento)
+    return acumulador
+```
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual.
 
 ---
 
