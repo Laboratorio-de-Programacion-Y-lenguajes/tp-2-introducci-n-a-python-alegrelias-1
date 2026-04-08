@@ -61,15 +61,55 @@ def convertir_a_float(valor: str) -> float:
 
 ### 2 - condicionales.py
 
-**Herramienta**: 
+### Ejercicio 1: Clasificar Número (`evaluar_numero`)
+
+**Herramienta**: Gemini
 
 **Prompt usado**:
-> 
+> Desde ahora, necesito que me hagas preguntas para realizar una función que clasifique un numero automaticamente. Cuando tengas suficiente información, crea un script en Python para realizar dicha tarea.
 
-**Resultado obtenido**:
+**Resultado obtenido**: Activación del patrón de Interacción Invertida. La IA generó preguntas de aclaración sobre los criterios matemáticos, el formato exacto del texto de retorno y el manejo del cero. Una vez respondidas las preguntas, se obtuvo el código exacto de la función `evaluar_numero(n: int) -> str` con la estructura `if/elif/else` necesaria.
 
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual.
 
-**¿Lo usaste tal cual o lo modificaste?**
+---
+
+### Ejercicio 1: Mayor de tres
+
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Desde ahora, necesito que me hagas preguntas para realizar una función que calcule el mayor de tres números. Cuando tengas suficiente información, crea un script en Python para realizar dicha tarea.
+
+**Resultado obtenido**: La IA solicitó confirmar los tipos de datos de las variables, el comportamiento esperado en caso de empate y si estaba permitido el uso de funciones nativas. Tras responder, devolvió la función `mayor_de_tres(a, b, c)` resuelta de manera óptima utilizando `max()`.
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual.
+
+---
+
+### Ejercicio 2: Clasificar Nota
+
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Desde ahora, necesito que me hagas preguntas para realizar una función que clasifique una nota automaticamente. Cuando tengas suficiente información, crea un script en Python para realizar dicha tarea.
+
+**Resultado obtenido**: La IA preguntó por la escala de notas válida, los textos exactos a retornar para cada rango y cómo manejar valores fuera de la escala. El resultado fue la función `clasificar_nota(nota: float) -> str` que evalúa los rangos solicitados y retorna un mensaje de error específico si el número no está entre 0 y 10.
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual.
+
+---
+
+### Ejercicio 3: Año Bisiesto
+
+**Herramienta**: Gemini
+
+**Prompt usado**:
+> Desde ahora, necesito que me hagas preguntas para realizar una función que verifique si un año es o no bisiesto. Cuando tengas suficiente información, crea un script en Python para realizar dicha tarea.
+
+**Resultado obtenido**: Consultas de la IA sobre la regla matemática a aplicar (estándar gregoriana) y el manejo de años inválidos. Se obtuvo la función `es_bisiesto(anio: int) -> bool` con la lógica matemática correcta y validaciones mediante el levantamiento de excepciones (`raise TypeError` y `raise ValueError`).
+
+**¿Lo usaste tal cual o lo modificaste?**: Se usó tal cual.
 
 
 ---
